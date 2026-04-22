@@ -51,7 +51,7 @@ export function TopNav() {
   const title = getPageTitle(location.pathname);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-primary/20 bg-primary text-primary-foreground shadow-sm">
+    <header className="sticky top-0 z-30 bg-primary text-primary-foreground shadow-md before:pointer-events-none before:absolute before:inset-x-0 before:-bottom-px before:h-px before:bg-gradient-to-r before:from-transparent before:via-primary-foreground/70 before:to-transparent after:pointer-events-none after:absolute after:inset-x-0 after:-bottom-2 after:h-2 after:bg-gradient-to-b after:from-primary-foreground/20 after:to-transparent after:blur-sm relative">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-3 px-4">
         {isRoot ? (
           <Link to="/" className="flex items-center gap-2">
@@ -59,7 +59,7 @@ export function TopNav() {
               <img src={logo} alt="Premier Cement" className="h-6 w-auto" />
             </div>
             <span className="font-heading text-md font-bold sm:inline">
-              Bag Plant Machinery
+              Plant Performance
             </span>
           </Link>
         ) : (

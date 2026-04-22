@@ -26,12 +26,12 @@ export default function Login() {
           <h1 className="font-heading text-2xl md:text-3xl font-bold leading-tight">
             Premier Cement
             <br />
-            <span className="text-zinc-700 bg-white px-1 text-xl rounded-md">
-              Bag Plant Machinery
+            <span className="text-zinc-100 text-xl rounded-md">
+              Plant Performance
             </span>
           </h1>
           <p className="hidden md:block text-sm text-primary-foreground/80">
-            Monitor and control plant machinery in real time.
+            Machineries Performance Montioring
           </p>
         </div>
       </div>
