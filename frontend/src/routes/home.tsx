@@ -12,30 +12,26 @@ type Stat = {
   value: number;
   icon: LucideIcon;
   tone: Tone;
-  hint: string;
 };
 
 const stats: Stat[] = [
   {
-    label: "Total Machines",
+    label: "Total Machines in Plant",
     value: 42,
     icon: Boxes,
     tone: "blue",
-    hint: "Across all lines",
   },
   {
-    label: "Maintenance",
+    label: "Maintenance Needed",
     value: 7,
     icon: Wrench,
     tone: "amber",
-    hint: "Service due soon",
   },
   {
     label: "Out of Warranty",
     value: 12,
     icon: ShieldAlert,
     tone: "rose",
-    hint: "Coverage expired",
   },
 ];
 
@@ -109,40 +105,59 @@ export default function Home() {
         </p>
       </header>
 
-      <section aria-label="Summary" className="grid grid-cols-3 gap-2 sm:gap-3">
-        {stats.map(({ label, value, icon: Icon, tone, hint }) => {
-          const styles = statTones[tone];
-          return (
-            <Card key={label} size="sm" className={styles.card}>
-              <CardContent className="flex flex-col gap-2 px-3 sm:flex-row sm:items-start sm:gap-3">
+      {/* Redesigned Modern Slider Stats Section - Reduced Height */}
+      <section aria-label="Summary" className="-mx-4 sm:mx-0">
+        <div className="flex w-full snap-x snap-mandatory gap-3 overflow-x-auto px-4 py-1.5 sm:p-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          {stats.map(({ label, value, icon: Icon, tone }) => {
+            const styles = statTones[tone];
+            return (
+              <Card
+                key={label}
+                className={cn(
+                  "relative flex min-w-[75%] shrink-0 snap-center flex-col overflow-hidden border-transparent shadow-sm sm:min-w-0 sm:flex-1",
+                  styles.card,
+                )}
+              >
                 <div
                   className={cn(
-                    "flex size-8 items-center justify-center rounded-lg sm:size-10",
-                    styles.iconWrap,
+                    "absolute -right-4 -top-4 size-16 rounded-full blur-2xl opacity-30 dark:opacity-20",
+                    styles.iconWrap.split(" ")[0],
                   )}
-                >
-                  <Icon className="size-4 sm:size-5" aria-hidden />
-                </div>
-                <div className="flex min-w-0 flex-1 flex-col">
-                  <span className="text-[0.7rem] leading-tight font-medium text-muted-foreground sm:text-xs">
-                    {label}
-                  </span>
-                  <span
+                />
+
+                <CardContent className="flex items-center gap-3 p-3 sm:p-4">
+                  <div
                     className={cn(
-                      "font-heading text-xl leading-tight font-semibold tabular-nums sm:text-2xl",
-                      styles.value,
+                      "flex size-9 shrink-0 items-center justify-center rounded-lg",
+                      styles.iconWrap,
                     )}
                   >
-                    {value}
-                  </span>
-                  <span className="hidden text-xs text-muted-foreground sm:inline">
-                    {hint}
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
+                    <Icon className="size-4" aria-hidden />
+                  </div>
+
+                  <div className="flex min-w-0 flex-col justify-center">
+                    <div className="flex items-baseline gap-1.5">
+                      <span
+                        className={cn(
+                          "font-heading text-xl font-bold tracking-tight tabular-nums sm:text-2xl",
+                          styles.value,
+                        )}
+                      >
+                        {value}
+                      </span>
+                      {/* <span className="truncate text-[10px] font-medium uppercase tracking-wider text-muted-foreground/70">
+                        {hint}
+                      </span> */}
+                    </div>
+                    <span className="truncate text-xs font-medium text-muted-foreground">
+                      {label}
+                    </span>
+                  </div>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
       </section>
 
       <section aria-label="Quick actions" className="flex flex-col gap-3">

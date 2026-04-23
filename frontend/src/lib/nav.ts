@@ -46,8 +46,8 @@ export const pageEntries: NavEntry[] = [
 export const actionEntries: NavEntry[] = [
   {
     to: "/get-reading",
-    label: "Get Reading",
-    description: "Log a new meter reading",
+    label: "Log Reading",
+    description: "Post a new meter reading",
     icon: QrCode,
   },
   {
